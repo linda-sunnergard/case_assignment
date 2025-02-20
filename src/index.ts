@@ -11,7 +11,7 @@ app.set('env', 'development');
 app.set('json spaces', 4);
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Jensen Educattionn Case Assignment');
+  res.send('Jensen Education Case Assignment');
 });
 
 app.use('/businesses', bussinessRoutes);
