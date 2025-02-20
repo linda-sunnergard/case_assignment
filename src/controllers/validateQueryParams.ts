@@ -8,7 +8,7 @@ export const validateQueryParams = (req: Request, res:Response) => {
     } = req.query
 
     if (typeof location == 'undefined') {
-        if (typeof latitude == 'undefined' && typeof longitude == 'undefined') {
+        if (typeof latitude == 'undefined' || typeof longitude == 'undefined') {
             return res.sendStatus(400)
         }
     }

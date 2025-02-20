@@ -16,10 +16,11 @@ test('Location param being sent in as expected', () => {
     expect(mockedRes.sendStatus).not.toHaveBeenCalled()
 })
 
-test('No location param, but latitude sent', () => {
+test('No location param, but latitude and longitude is sent', () => {
     const mockedReq = {
         query: {
-            latitude: "59.334591"
+            latitude: "22.123456",
+            longitude: "11.123456"
         }
     }
 
@@ -30,6 +31,23 @@ test('No location param, but latitude sent', () => {
     validateQueryParams(mockedReq, mockedRes)
 
     expect(mockedRes.sendStatus).not.toHaveBeenCalled()
+})
+
+test('No location or latitude, only longitude', () => {
+    const mockedReq = {
+        query: {
+            
+            longitude: "11.123456"
+        }
+    }
+
+    const mockedRes = {
+        sendStatus: jest.fn().mockReturnValue(400),
+    }
+
+    validateQueryParams(mockedReq, mockedRes)
+
+    expect(mockedRes.sendStatus).toHaveBeenCalled()
 })
 
 test('No location, latitude or longitude is present', () => {
